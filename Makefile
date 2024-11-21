@@ -1,28 +1,22 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: rtari-ca <rtari-ca@student.42lausanne.c    +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/11/08 19:02:17 by rtari-ca          #+#    #+#              #
-#    Updated: 2024/11/09 18:10:25 by rtari-ca         ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
+NAME := so_long
 
-NAME = so_long
-CC = cc
-CFLAGS = -Wall -Wextra -Werror -Iminilibx  # Include path for mlx.h
-MLX_FLAGS = -Lminilibx -lmlx -framework OpenGL -framework AppKit
+CC := gcc
 
-SRC = main.c
+CFLAGS := -Wall -Wextra -Werror -Iheaders/
 
-all: $(NAME)
+SOURCE := game_logic/*.c
+GETNEXTLINE := get_next_line/*c
+LIBRARY := -Lminilibx -lmlx -framework OpenGL -framework AppKit
+MINILIBX := minilibx/
 
-$(NAME): $(SRC)
-	$(CC) $(CFLAGS) $(SRC) $(MLX_FLAGS) -o $(NAME)
+all:
+	make -C $(MINILIBX)
+	$(CC) $(CFLAGS) $(SOURCE) $(GETNEXTLINE) $(LIBRARY) -o $(NAME)
 
 clean:
-	rm -f $(NAME)
 
-re: clean all
+fclean: clean
+		make clean -C $(MINILIBX)
+		rm -rf $(NAME)
+
+re: fclean all

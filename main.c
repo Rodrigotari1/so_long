@@ -6,7 +6,7 @@
 /*   By: rtari-ca <rtari-ca@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 18:11:03 by rtari-ca          #+#    #+#             */
-/*   Updated: 2024/11/09 18:11:06 by rtari-ca         ###   ########.fr       */
+/*   Updated: 2024/11/21 17:36:54 by rtari-ca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,7 @@ int main(void)
     mlx = mlx_init();
     mlx_win = mlx_new_window(mlx, 1920, 1080, "Hello world!");
 
-    // Load the image (make sure the path is correct)
-    img = mlx_xpm_file_to_image(mlx, "dog.xpm", &(int){0}, &(int){0});
-    if (img == NULL)
+    // Load the image (make sure the path is corr
     {
         return (1); // Exit if image loading fails
     }
