@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rtari-ca <rtari-ca@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: rodrigo <rodrigo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 17:20:40 by rtari-ca          #+#    #+#             */
-/*   Updated: 2024/11/21 18:50:36 by rtari-ca         ###   ########.fr       */
+/*   Updated: 2024/11/23 16:31:40 by rodrigo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # include <errno.h>
 # include <string.h>
 # include "get_next_line.h"
-# include "../MiniLibX/mlx.h"
+#include "mlx.h"
 
 typedef struct t_start
 {

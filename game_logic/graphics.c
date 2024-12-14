@@ -26,7 +26,10 @@ void	place_images_in_game(t_complete *game)
 			"game_images/wall.xpm", &i, &j);
 	game->player = mlx_xpm_file_to_image(game->mlxpointer,
 			"game_images/player.xpm", &i, &j);
-
+	game->exit = mlx_xpm_file_to_image(game->mlxpointer,
+			"game_images/exit.xpm", &i, &j);
+	game->collectable = mlx_xpm_file_to_image(game->mlxpointer,
+			"game_images/item.xpm", &i, &j);
 }
 
 void	adding_in_graphics(t_complete *game)
