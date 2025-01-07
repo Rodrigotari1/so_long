@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   so_long.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rodrigo <rodrigo@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/12/30 12:35:47 by rodrigo           #+#    #+#             */
+/*   Updated: 2024/12/30 12:35:47 by rodrigo          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "so_long.h"
 
 static void	*ft_memset(void *b, int c, size_t length)
@@ -15,12 +27,23 @@ int	exit_point(t_complete *game)
 	int	line;
 
 	line = 0;
-	if (game->winpointer)
+	if (game->winpointer && game->mlxpointer)
+	{
+		free_textures(game);
 		mlx_destroy_window(game->mlxpointer, game->winpointer);
-	free(game->mlxpointer);
-	while (line < game->heightmap - 1)
-		free(game->map[line++]);
-	free(game->map);
+	}
+	if (game->mlxpointer)
+	{
+		free(game->mlxpointer);
+	}
+	while (game->map && line < game->heightmap)
+	{
+		if (game->map[line])
+			free(game->map[line]);
+		line++;
+	}
+	if (game->map)
+		free(game->map);
 	exit(0);
 }
 
@@ -34,8 +57,8 @@ int	main(int argc, char **argv)
 	map_reading(&game, argv);
 	check_errors(&game);
 	game.mlxpointer = mlx_init();
-	game.winpointer = mlx_new_window(game.mlxpointer, (game.widthmap * 40),
-			(game.heightmap * 40), "solong");
+	game.winpointer = mlx_new_window(game.mlxpointer, (game.widthmap * TILE_SIZE),
+			(game.heightmap * TILE_SIZE), "solong");
 	place_images_in_game(&game);
 	adding_in_graphics(&game);
 	mlx_key_hook(game.winpointer, controls_working, &game);
