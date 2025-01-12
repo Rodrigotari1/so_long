@@ -6,7 +6,7 @@
 /*   By: rodrigo <rodrigo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/30 12:35:47 by rodrigo           #+#    #+#             */
-/*   Updated: 2024/12/30 12:35:47 by rodrigo          ###   ########.fr       */
+/*   Updated: 2025/01/12 19:08:08 by rodrigo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,8 @@ int	main(int argc, char **argv)
 	map_reading(&game, argv);
 	check_errors(&game);
 	game.mlxpointer = mlx_init();
-	game.winpointer = mlx_new_window(game.mlxpointer, (game.widthmap * TILE_SIZE),
-			(game.heightmap * TILE_SIZE), "solong");
+	game.winpointer = mlx_new_window(game.mlxpointer, game.widthmap * TILE_SIZE,
+			game.heightmap * TILE_SIZE, "solong");
 	place_images_in_game(&game);
 	adding_in_graphics(&game);
 	mlx_key_hook(game.winpointer, controls_working, &game);
