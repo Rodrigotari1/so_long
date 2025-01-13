@@ -6,7 +6,7 @@
 /*   By: rodrigo <rodrigo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/30 12:35:47 by rodrigo           #+#    #+#             */
-/*   Updated: 2025/01/12 19:08:08 by rodrigo          ###   ########.fr       */
+/*   Updated: 2025/01/13 16:14:39 by rodrigo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,6 @@ int	main(int argc, char **argv)
 	place_images_in_game(&game);
 	adding_in_graphics(&game);
 	mlx_key_hook(game.winpointer, controls_working, &game);
-	mlx_hook(game.winpointer, 17, 0, (void *)exit, 0);
+	mlx_hook(game.winpointer, 33, 1L<<17, (void *)exit, 0);
 	mlx_loop(game.mlxpointer);
 }

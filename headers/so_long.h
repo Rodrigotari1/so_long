@@ -6,7 +6,7 @@
 /*   By: rodrigo <rodrigo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 17:20:40 by rtari-ca          #+#    #+#             */
-/*   Updated: 2025/01/12 21:47:57 by rodrigo          ###   ########.fr       */
+/*   Updated: 2025/01/13 16:14:39 by rodrigo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # include <errno.h>
 # include <string.h>
 # include "get_next_line.h"
-# include "mlx.h"
+# include <mlx.h>
 
 typedef struct t_start
 {
