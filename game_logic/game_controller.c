@@ -6,7 +6,7 @@
 /*   By: rodrigo <rodrigo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/30 12:35:30 by rodrigo           #+#    #+#             */
-/*   Updated: 2025/01/13 16:14:39 by rodrigo          ###   ########.fr       */
+/*   Updated: 2025/01/13 17:15:13 by rodrigo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,15 +37,15 @@ int	controls_working(int command, t_complete *game)
 
 	success = 0;
 	printf("Key pressed: %d\n", command);
-	if (command == 65307)
+	if (command == 53)
 		exit_point(game);
-	if (command == 119)
+	if (command == 13)
 		success = handle_movement(game, 0, -1);
-	if (command == 115)
+	if (command == 1)
 		success = handle_movement(game, 0, 1);
-	if (command == 97)
+	if (command == 0)
 		success = handle_movement(game, -1, 0);
-	if (command == 100)
+	if (command == 2)
 		success = handle_movement(game, 1, 0);
 	if (success)
 	{

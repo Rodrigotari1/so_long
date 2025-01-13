@@ -6,7 +6,7 @@
 /*   By: rodrigo <rodrigo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/30 12:35:47 by rodrigo           #+#    #+#             */
-/*   Updated: 2025/01/13 16:14:39 by rodrigo          ###   ########.fr       */
+/*   Updated: 2025/01/13 17:14:34 by rodrigo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,7 @@ int	exit_point(t_complete *game)
 		mlx_destroy_window(game->mlxpointer, game->winpointer);
 	}
 	if (game->mlxpointer)
-	{
 		free(game->mlxpointer);
-	}
 	while (game->map && line < game->heightmap)
 	{
 		if (game->map[line])
@@ -45,6 +43,7 @@ int	exit_point(t_complete *game)
 	if (game->map)
 		free(game->map);
 	exit(0);
+	return (0);
 }
 
 int	main(int argc, char **argv)
@@ -62,6 +61,6 @@ int	main(int argc, char **argv)
 	place_images_in_game(&game);
 	adding_in_graphics(&game);
 	mlx_key_hook(game.winpointer, controls_working, &game);
-	mlx_hook(game.winpointer, 33, 1L<<17, (void *)exit, 0);
+	mlx_hook(game.winpointer, 33, 1L<<17, exit_point, &game);
 	mlx_loop(game.mlxpointer);
 }
