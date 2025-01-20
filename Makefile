@@ -42,15 +42,22 @@ GREEN := \033[0;32m
 RED := \033[0;31m
 RESET := \033[0m
 
-all: $(MLX) $(NAME)
+# Add printf directory and library
+PRINTF_DIR = printf
+PRINTF = $(PRINTF_DIR)/libftprintf.a
+
+all: $(MLX) $(PRINTF) $(NAME)
 
 $(MLX):
 	@echo "$(GREEN)Building MinilibX...$(RESET)"
 	@make -C $(MLX_DIR)
 
-$(NAME): $(OBJS)
+$(PRINTF):
+	make -C $(PRINTF_DIR)
+
+$(NAME): $(OBJS) $(PRINTF)
 	@echo "$(GREEN)Building $(NAME)...$(RESET)"
-	$(CC) $(OBJS) -L$(MLX_DIR) $(LIBS) -o $(NAME)
+	$(CC) $(OBJS) $(PRINTF) -L$(MLX_DIR) $(LIBS) -o $(NAME)
 
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
@@ -58,10 +65,12 @@ $(NAME): $(OBJS)
 clean:
 	@echo "$(RED)Cleaning object files...$(RESET)"
 	@make clean -C $(MLX_DIR)
+	@make -C $(PRINTF_DIR) clean
 	@rm -f $(OBJS)
 
 fclean: clean
 	@echo "$(RED)Cleaning executables...$(RESET)"
+	@make -C $(PRINTF_DIR) fclean
 	@rm -f $(NAME)
 
 re: fclean all

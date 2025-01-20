@@ -6,11 +6,26 @@
 /*   By: rodrigo <rodrigo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/14 23:00:00 by rtari-ca          #+#    #+#             */
-/*   Updated: 2025/01/20 19:23:13 by rodrigo          ###   ########.fr       */
+/*   Updated: 2025/01/20 19:40:11 by rodrigo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+static void	handle_exit(t_complete *game, int x, int y)
+{
+	void	*img;
+
+	img = game->floor;
+	mlx_put_image_to_window(game->mlxpointer, game->winpointer,
+		img, x * TILE_SIZE, y * TILE_SIZE);
+	if (game->collectables == 0)
+	{
+		img = game->exit;
+		mlx_put_image_to_window(game->mlxpointer, game->winpointer,
+			img, x * TILE_SIZE, y * TILE_SIZE);
+	}
+}
 
 void	render_tile(t_complete *game, char tile_type, int x, int y)
 {
@@ -29,20 +44,11 @@ void	render_tile(t_complete *game, char tile_type, int x, int y)
 	}
 	else if (tile_type == 'E')
 	{
-		mlx_put_image_to_window(game->mlxpointer, game->winpointer,
-			game->floor, x * TILE_SIZE, y * TILE_SIZE);
-		if (game->collectables == 0)
-		{
-			printf("Debug: Rendering exit at x=%d, y=%d (collectables=%d)\n", 
-				x, y, game->collectables);  // Debug print
-			mlx_put_image_to_window(game->mlxpointer, game->winpointer,
-				game->exit, x * TILE_SIZE, y * TILE_SIZE);
-		}
-		return;
+		handle_exit(game, x, y);
+		return ;
 	}
 	else if (tile_type == 'C')
 		img = game->collectable;
-
 	if (img)
 		mlx_put_image_to_window(game->mlxpointer, game->winpointer,
 			img, x * TILE_SIZE, y * TILE_SIZE);

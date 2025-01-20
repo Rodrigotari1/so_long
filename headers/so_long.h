@@ -6,13 +6,14 @@
 /*   By: rodrigo <rodrigo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 17:20:40 by rtari-ca          #+#    #+#             */
-/*   Updated: 2025/01/13 16:14:39 by rodrigo          ###   ########.fr       */
+/*   Updated: 2025/01/20 19:46:00 by rodrigo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
 
+# include "../printf/ft_printf.h"
 # define TILE_SIZE 32
 # include <unistd.h>
 # include <stdio.h>

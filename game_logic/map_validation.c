@@ -6,11 +6,25 @@
 /*   By: rodrigo <rodrigo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/30 12:35:01 by rodrigo           #+#    #+#             */
-/*   Updated: 2025/01/12 19:03:05 by rodrigo          ###   ########.fr       */
+/*   Updated: 2025/01/20 19:51:32 by rodrigo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+static int	is_valid_char(const char *str, char c)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] == c)
+			return (1);
+		i++;
+	}
+	return (0);
+}
 
 static void	validate_tile(t_complete *game, int height, int width)
 {
@@ -22,11 +36,11 @@ static void	validate_tile(t_complete *game, int height, int width)
 	valid_chars[2] = 'P';
 	valid_chars[3] = 'C';
 	valid_chars[4] = 'E';
-	valid_chars[5] = '\n';
+	valid_chars[5] = '\0';
 	tile = game->map[height][width];
-	if (!strchr(valid_chars, tile))
+	if (!is_valid_char(valid_chars, tile) && tile != '\n')
 	{
-		printf("Error\n");
+		ft_printf("Error\n");
 		exit_point(game);
 	}
 	if (tile == 'C')
@@ -42,7 +56,7 @@ static void	check_map_content(t_complete *game)
 	if (!(game->playercount == 1 && game->columncount >= 1
 			&& game->exitcount == 1))
 	{
-		printf("Error\n");
+		ft_printf("Error\n");
 		exit_point(game);
 	}
 }
@@ -53,7 +67,7 @@ static void	process_map_line(t_complete *game, int height)
 
 	if (!game->map[height])
 	{
-		printf("Error\n");
+		ft_printf("Error\n");
 		exit_point(game);
 	}
 	width = 0;
@@ -70,7 +84,7 @@ void	validate_map_characters(t_complete *game)
 
 	if (!game->map)
 	{
-		printf("Error\n");
+		ft_printf("Error\n");
 		exit(1);
 	}
 	height = 0;

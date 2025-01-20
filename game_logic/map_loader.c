@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_loader.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rtari-ca <rtari-ca@student.42lausanne.c    +#+  +:+       +#+        */
+/*   By: rodrigo <rodrigo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/30 12:35:39 by rodrigo           #+#    #+#             */
-/*   Updated: 2025/01/17 15:51:49 by rtari-ca         ###   ########.fr       */
+/*   Updated: 2025/01/20 19:52:25 by rodrigo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ static void	process_map_line(t_complete *game, char *readmap)
 	else if (game->heightmap > 1
 		&& width_of_map(game->map[game->heightmap - 1]) != game->widthmap)
 	{
-		printf("Error\n");
+		ft_printf("Error\n");
 		exit_point(game);
 	}
 }
@@ -62,7 +62,7 @@ int	map_reading(t_complete *game, char **argv)
 	game->fd = open(argv[1], O_RDONLY);
 	if (game->fd < 0)
 	{
-		printf("Error\n");
+		ft_printf("Error\n");
 		exit(1);
 	}
 	game->heightmap = 0;
