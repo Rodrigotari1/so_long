@@ -6,7 +6,7 @@
 /*   By: rodrigo <rodrigo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/14 23:00:00 by rtari-ca          #+#    #+#             */
-/*   Updated: 2025/01/12 19:04:06 by rodrigo          ###   ########.fr       */
+/*   Updated: 2025/01/20 18:51:55 by rodrigo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,15 +50,21 @@ void	adding_in_graphics(t_complete *game)
 	int	y;
 
 	game->collectables = 0;
-	y = 0;
-	while (y < game->heightmap)
+	// First pass: count collectibles
+	y = -1;
+	while (++y < game->heightmap)
 	{
-		x = 0;
-		while (x < game->widthmap)
-		{
+		x = -1;
+		while (++x < game->widthmap)
+			if (game->map[y][x] == 'C')
+				game->collectables++;
+	}
+	// Second pass: render everything
+	y = -1;
+	while (++y < game->heightmap)
+	{
+		x = -1;
+		while (++x < game->widthmap)
 			render_tile(game, game->map[y][x], x, y);
-			x++;
-		}
-		y++;
 	}
 }

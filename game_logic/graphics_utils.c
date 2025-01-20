@@ -6,7 +6,7 @@
 /*   By: rodrigo <rodrigo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/14 23:00:00 by rtari-ca          #+#    #+#             */
-/*   Updated: 2025/01/12 19:02:48 by rodrigo          ###   ########.fr       */
+/*   Updated: 2025/01/20 18:51:55 by rodrigo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,16 @@ void	render_tile(t_complete *game, char tile_type, int x, int y)
 		game->y_axis = y;
 	}
 	else if (tile_type == 'E')
-		img = game->exit;
-	else if (tile_type == 'C')
 	{
-		img = game->collectable;
-		game->collectables++;
+		mlx_put_image_to_window(game->mlxpointer, game->winpointer,
+			game->floor, x * TILE_SIZE, y * TILE_SIZE);
+		if (game->collectables == 0)
+			img = game->exit;
+		else
+			return;
 	}
+	else if (tile_type == 'C')
+		img = game->collectable;
 	if (img)
 		mlx_put_image_to_window(game->mlxpointer, game->winpointer,
 			img, x * TILE_SIZE, y * TILE_SIZE);
