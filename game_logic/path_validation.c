@@ -6,7 +6,7 @@
 /*   By: rodrigo <rodrigo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/20 20:10:01 by rodrigo           #+#    #+#             */
-/*   Updated: 2025/01/20 20:14:46 by rodrigo          ###   ########.fr       */
+/*   Updated: 2025/01/20 20:15:43 by rodrigo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,13 +65,6 @@ static char	**create_visited_array(t_complete *game)
 		i++;
 	}
 	return (visited);
-}
-
-void	free_visited_array(char **visited, int height)
-{
-	while (height--)
-		free(visited[height]);
-	free(visited);
 }
 
 static void	handle_path_check(t_complete *game, char **visited, int y, int x)

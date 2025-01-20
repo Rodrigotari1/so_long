@@ -6,7 +6,7 @@
 /*   By: rodrigo <rodrigo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/30 12:35:39 by rodrigo           #+#    #+#             */
-/*   Updated: 2025/01/20 19:56:07 by rodrigo          ###   ########.fr       */
+/*   Updated: 2025/01/20 20:15:43 by rodrigo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,4 +68,11 @@ void	check_map_dimensions(t_complete *game)
 		ft_printf("Error\n");
 		exit_point(game);
 	}
+}
+
+void	free_visited_array(char **visited, int height)
+{
+	while (height--)
+		free(visited[height]);
+	free(visited);
 }
