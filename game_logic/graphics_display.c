@@ -6,7 +6,7 @@
 /*   By: rodrigo <rodrigo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/14 23:00:00 by rtari-ca          #+#    #+#             */
-/*   Updated: 2025/01/20 18:51:55 by rodrigo          ###   ########.fr       */
+/*   Updated: 2025/01/20 19:24:25 by rodrigo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,21 +50,29 @@ void	adding_in_graphics(t_complete *game)
 	int	y;
 
 	game->collectables = 0;
-	// First pass: count collectibles
+	// First pass: count collectibles and find exit
 	y = -1;
 	while (++y < game->heightmap)
 	{
 		x = -1;
 		while (++x < game->widthmap)
+		{
 			if (game->map[y][x] == 'C')
 				game->collectables++;
+			if (game->map[y][x] == 'E')
+				printf("Debug: Found exit at x=%d, y=%d\n", x, y);
+		}
 	}
+	printf("Collectables remaining: %d\n", game->collectables);
 	// Second pass: render everything
 	y = -1;
 	while (++y < game->heightmap)
 	{
 		x = -1;
 		while (++x < game->widthmap)
+		{
+			printf("Debug: Tile at x=%d, y=%d is '%c'\n", x, y, game->map[y][x]);
 			render_tile(game, game->map[y][x], x, y);
+		}
 	}
 }

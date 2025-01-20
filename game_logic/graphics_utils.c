@@ -6,7 +6,7 @@
 /*   By: rodrigo <rodrigo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/14 23:00:00 by rtari-ca          #+#    #+#             */
-/*   Updated: 2025/01/20 18:51:55 by rodrigo          ###   ########.fr       */
+/*   Updated: 2025/01/20 19:23:13 by rodrigo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,17 @@ void	render_tile(t_complete *game, char tile_type, int x, int y)
 		mlx_put_image_to_window(game->mlxpointer, game->winpointer,
 			game->floor, x * TILE_SIZE, y * TILE_SIZE);
 		if (game->collectables == 0)
-			img = game->exit;
-		else
-			return;
+		{
+			printf("Debug: Rendering exit at x=%d, y=%d (collectables=%d)\n", 
+				x, y, game->collectables);  // Debug print
+			mlx_put_image_to_window(game->mlxpointer, game->winpointer,
+				game->exit, x * TILE_SIZE, y * TILE_SIZE);
+		}
+		return;
 	}
 	else if (tile_type == 'C')
 		img = game->collectable;
+
 	if (img)
 		mlx_put_image_to_window(game->mlxpointer, game->winpointer,
 			img, x * TILE_SIZE, y * TILE_SIZE);

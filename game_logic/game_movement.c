@@ -6,7 +6,7 @@
 /*   By: rodrigo <rodrigo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/30 12:35:30 by rodrigo           #+#    #+#             */
-/*   Updated: 2025/01/20 18:49:08 by rodrigo          ###   ########.fr       */
+/*   Updated: 2025/01/20 19:29:28 by rodrigo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,38 +14,42 @@
 
 static void	update_position(t_complete *game, t_pos new, t_pos old)
 {
-	char old_tile;
+	static char	last_tile = '0';  // Remember what was under the player
 
-	old_tile = game->map[new.y][new.x];  // Save what was in the new position
+	// If moving onto a collectible, don't store it
+	if (game->map[new.y][new.x] == 'C')
+		last_tile = '0';
+	else
+		last_tile = game->map[new.y][new.x];
+
+	// Restore the previous tile when moving off a position
+	game->map[old.y][old.x] = last_tile;
+	// Place player in new position
 	game->map[new.y][new.x] = 'P';
-	game->map[old.y][old.x] = (old_tile == 'E') ? 'E' : '0';  // Keep exit tile as 'E'
+	
 	game->x_axis = new.x;
 	game->y_axis = new.y;
 	game->counter++;
-	// Refresh graphics to update exit visibility
 	adding_in_graphics(game);
 }
 
 int	handle_move_to_position(t_complete *game, t_pos new, t_pos old)
 {
-	if (game->map[new.y][new.x] == 'E')
+	char	target_tile;
+
+	target_tile = game->map[new.y][new.x];
+	if (target_tile == 'E')
 	{
 		if (game->collectables == 0)
 		{
 			printf("\nVictory! You've completed the level!\n");
 			exit_point(game);
 		}
-		update_position(game, new, old);
-		return (1);
 	}
-	if (game->map[new.y][new.x] == '0' || game->map[new.y][new.x] == 'C')
+	if (target_tile == '0' || target_tile == 'C' || target_tile == 'E')
 	{
-		if (game->map[new.y][new.x] == 'C')
-		{
+		if (target_tile == 'C')
 			game->collectables--;
-			// Refresh graphics after collecting an item
-			adding_in_graphics(game);
-		}
 		update_position(game, new, old);
 		return (1);
 	}
