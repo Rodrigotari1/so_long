@@ -6,7 +6,7 @@
 /*   By: rodrigo <rodrigo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 17:20:40 by rtari-ca          #+#    #+#             */
-/*   Updated: 2025/01/20 19:46:00 by rodrigo          ###   ########.fr       */
+/*   Updated: 2025/01/20 20:09:08 by rodrigo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ typedef struct t_start
 	int		y_axis;
 	int		counter;
 	int		collectables;
+	int valid_collectibles;
+	int valid_exit;
 
 	char	**map;
 
@@ -72,5 +74,8 @@ void	validate_map_characters(t_complete *game);
 int		check_horizontal_walls(t_complete *game);
 int		check_vertical_walls(t_complete *game);
 int		handle_player_movement(t_complete *game, int new_x, int new_y);
+void	validate_path(t_complete *game);
+void	free_visited_array(char **visited, int height);
+void	*ft_memset(void *b, int c, size_t length);
 
 #endif

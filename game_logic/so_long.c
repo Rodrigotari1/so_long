@@ -6,13 +6,13 @@
 /*   By: rodrigo <rodrigo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/30 12:35:47 by rodrigo           #+#    #+#             */
-/*   Updated: 2025/01/20 19:35:36 by rodrigo          ###   ########.fr       */
+/*   Updated: 2025/01/20 20:09:32 by rodrigo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-static void	*ft_memset(void *b, int c, size_t length)
+void	*ft_memset(void *b, int c, size_t length)
 {
 	unsigned char	*p;
 

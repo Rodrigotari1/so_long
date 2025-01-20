@@ -6,7 +6,7 @@
 /*   By: rodrigo <rodrigo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/30 12:35:01 by rodrigo           #+#    #+#             */
-/*   Updated: 2025/01/20 19:51:32 by rodrigo          ###   ########.fr       */
+/*   Updated: 2025/01/20 20:08:05 by rodrigo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,4 +94,5 @@ void	validate_map_characters(t_complete *game)
 		height++;
 	}
 	check_map_content(game);
+	validate_path(game);
 }
