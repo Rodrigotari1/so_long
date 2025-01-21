@@ -78,5 +78,6 @@ void	validate_path(t_complete *game);
 void	free_visited_array(char **visited, int height);
 void	*ft_memset(void *b, int c, size_t length);
 void	check_empty_map(t_complete *game);
+void	count_collectibles(t_complete *game);
 
 #endif

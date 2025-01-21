@@ -91,3 +91,19 @@ void	cleanup_game(t_complete *game)
 		free(game->map);
 	}
 }
+
+void	count_collectibles(t_complete *game)
+{
+	int	x;
+	int	y;
+
+	game->collectables = 0;
+	y = -1;
+	while (++y < game->heightmap)
+	{
+		x = -1;
+		while (++x < game->widthmap)
+			if (game->map[y][x] == 'C')
+				game->collectables++;
+	}
+}

@@ -61,4 +61,4 @@ static void	load_game_textures(t_complete *game)
 void	place_images_in_game(t_complete *game)
 {
 	load_game_textures(game);
-} 
+}
