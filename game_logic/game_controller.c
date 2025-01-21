@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game_controller.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rodrigo <rodrigo@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rtari-ca <rtari-ca@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/30 12:35:30 by rodrigo           #+#    #+#             */
-/*   Updated: 2025/01/21 16:00:53 by rodrigo          ###   ########.fr       */
+/*   Updated: 2025/01/21 16:15:04 by rtari-ca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,4 +111,4 @@ int	controls_working(int command, t_complete *game)
 		adding_in_graphics(game);
 	}
 	return (1);
-} 
+}

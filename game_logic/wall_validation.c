@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   wall_validation.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rodrigo <rodrigo@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rtari-ca <rtari-ca@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 16:07:23 by rodrigo           #+#    #+#             */
-/*   Updated: 2025/01/21 16:06:30 by rodrigo          ###   ########.fr       */
+/*   Updated: 2025/01/21 16:15:13 by rtari-ca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,4 +55,4 @@ void	validate_walls(t_complete *game)
 		ft_printf("Error\n");
 		exit_point(game);
 	}
-} 
+}
