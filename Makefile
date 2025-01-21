@@ -10,67 +10,50 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME := so_long
-CC := gcc
-CFLAGS := -Wall -Wextra -Werror -Iheaders -g
+NAME = so_long
+CC = gcc
+CFLAGS = -Wall -Wextra -Werror -Iheaders -g -Iminilibx-linux
 
-# Source directories and files
-SRC_DIR := game_logic
-GNL_DIR := get_next_line
-SRCS := $(wildcard $(SRC_DIR)/*.c) $(wildcard $(GNL_DIR)/*.c)
-OBJS := $(SRCS:.c=.o)
+SRCS = game_logic/error_utils.c \
+	game_logic/game_controller.c \
+	game_logic/graphics_display.c \
+	game_logic/graphics_init.c \
+	game_logic/graphics_utils.c \
+	game_logic/map_loader.c \
+	game_logic/map_utils.c \
+	game_logic/map_validation.c \
+	game_logic/path_validation.c \
+	game_logic/so_long.c \
+	game_logic/wall_validation.c \
+	get_next_line/get_next_line.c \
+	get_next_line/get_next_line_utils.c
 
-# MLX configuration
-MLX_DIR := minilibx-linux
-MLX_FLAGS := -lmlx -lXext -lX11 -L$(MLX_DIR)
-CFLAGS += -I$(MLX_DIR)
-
-MLX := $(MLX_DIR)/libmlx.a
-LIBS := $(MLX_FLAGS) -lm -lz
-
-# Default map for testing
-MAP_FILE := game_maps/map1.ber
-
-# Colors for output
-GREEN := \033[0;32m
-RED := \033[0;31m
-RESET := \033[0m
-
-# Add printf directory and library
+OBJS = $(SRCS:.c=.o)
+MLX_DIR = minilibx-linux
+MLX = $(MLX_DIR)/libmlx.a
 PRINTF_DIR = printf
 PRINTF = $(PRINTF_DIR)/libftprintf.a
 
 all: $(MLX) $(PRINTF) $(NAME)
 
 $(MLX):
-	@echo "$(GREEN)Building MinilibX...$(RESET)"
-	@make -C $(MLX_DIR)
+	make -C $(MLX_DIR)
 
 $(PRINTF):
 	make -C $(PRINTF_DIR)
 
 $(NAME): $(OBJS) $(PRINTF)
-	@echo "$(GREEN)Building $(NAME)...$(RESET)"
-	$(CC) $(OBJS) $(PRINTF) -L$(MLX_DIR) $(LIBS) -o $(NAME)
-
-%.o: %.c
-	$(CC) $(CFLAGS) -c $< -o $@
+	$(CC) $(OBJS) $(PRINTF) -L$(MLX_DIR) -lmlx -lXext -lX11 -lm -lz -o $(NAME)
 
 clean:
-	@echo "$(RED)Cleaning object files...$(RESET)"
-	@make clean -C $(MLX_DIR)
-	@make -C $(PRINTF_DIR) clean
-	@rm -f $(OBJS)
-	@rm -f $(SRC_DIR)/*.d
+	make -C $(MLX_DIR) clean
+	make -C $(PRINTF_DIR) clean
+	rm -f $(OBJS)
 
 fclean: clean
-	@echo "$(RED)Cleaning executables...$(RESET)"
-	@make -C $(PRINTF_DIR) fclean
-	@rm -f $(NAME)
+	make -C $(PRINTF_DIR) fclean
+	rm -f $(NAME)
 
 re: fclean all
 
-run: all
-	./$(NAME) $(MAP_FILE)
-
-.PHONY: all clean fclean re run
+.PHONY: all clean fclean re

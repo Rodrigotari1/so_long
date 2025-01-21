@@ -59,7 +59,7 @@ int	main(int argc, char **argv)
 	check_errors(&game);
 	game.mlxpointer = mlx_init();
 	game.winpointer = mlx_new_window(game.mlxpointer, game.widthmap * TILE_SIZE,
-			game.heightmap * TILE_SIZE, "solong");
+			game.heightmap * TILE_SIZE, "so_long");
 	place_images_in_game(&game);
 	adding_in_graphics(&game);
 	mlx_hook(game.winpointer, 2, 1L << 0, controls_working, &game);
