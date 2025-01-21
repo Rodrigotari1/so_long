@@ -6,7 +6,7 @@
 /*   By: rodrigo <rodrigo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 17:20:40 by rtari-ca          #+#    #+#             */
-/*   Updated: 2025/01/21 15:44:39 by rodrigo          ###   ########.fr       */
+/*   Updated: 2025/01/21 16:05:16 by rodrigo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,8 @@ typedef struct t_start
 	int		y_axis;
 	int		counter;
 	int		collectables;
-	int valid_collectibles;
-	int valid_exit;
+	int		valid_collectibles;
+	int		valid_exit;
 
 	char	**map;
 
