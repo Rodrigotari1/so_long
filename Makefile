@@ -48,13 +48,6 @@ RESET := \033[0m
 PRINTF_DIR = printf
 PRINTF = $(PRINTF_DIR)/libftprintf.a
 
-# Add dependency generation
-DEPS := $(SRCS:.c=.d)
-CFLAGS += -MMD -MP
-
-# Include generated dependencies
--include $(DEPS)
-
 all: $(MLX) $(PRINTF) $(NAME)
 
 $(MLX):
@@ -76,6 +69,7 @@ clean:
 	@make clean -C $(MLX_DIR)
 	@make -C $(PRINTF_DIR) clean
 	@rm -f $(OBJS)
+	@rm -f $(SRC_DIR)/*.d
 
 fclean: clean
 	@echo "$(RED)Cleaning executables...$(RESET)"
