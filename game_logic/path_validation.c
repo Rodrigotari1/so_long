@@ -6,7 +6,7 @@
 /*   By: rodrigo <rodrigo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/20 20:10:01 by rodrigo           #+#    #+#             */
-/*   Updated: 2025/01/20 20:15:43 by rodrigo          ###   ########.fr       */
+/*   Updated: 2025/01/21 15:45:27 by rodrigo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,7 @@ void	validate_path(t_complete *game)
 {
 	char	**visited;
 	int		y;
+	int		player_x;
 
 	visited = create_visited_array(game);
 	if (!visited)
@@ -93,14 +94,16 @@ void	validate_path(t_complete *game)
 	}
 	y = -1;
 	while (++y < game->heightmap && game->map[y])
+	{
 		if (ft_strchr(game->map[y], 'P'))
 		{
-			handle_path_check(game, visited, y,
-				ft_strchr(game->map[y], 'P') - game->map[y]);
+			player_x = ft_strchr(game->map[y], 'P') - game->map[y];
+			handle_path_check(game, visited, y, player_x);
 			free_visited_array(visited, game->heightmap);
 			return ;
 		}
+	}
 	ft_printf("Error\nPlayer not found\n");
 	free_visited_array(visited, game->heightmap);
 	exit_point(game);
-} 
+}

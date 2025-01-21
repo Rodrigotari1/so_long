@@ -6,7 +6,7 @@
 /*   By: rodrigo <rodrigo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/30 12:35:39 by rodrigo           #+#    #+#             */
-/*   Updated: 2025/01/20 19:52:25 by rodrigo          ###   ########.fr       */
+/*   Updated: 2025/01/21 15:44:39 by rodrigo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,27 +54,37 @@ static void	process_map_line(t_complete *game, char *readmap)
 	}
 }
 
-int	map_reading(t_complete *game, char **argv)
+static void	handle_map_error(t_complete *game, int fd)
 {
-	char	*readmap;
+	ft_printf("Error\nCould not open map file\n");
+	close(fd);
+	exit_point(game);
+}
 
-	check_file_validity(argv[1]);
-	game->fd = open(argv[1], O_RDONLY);
-	if (game->fd < 0)
+static void	read_map_lines(t_complete *game, int fd)
+{
+	char	*line;
+	int		height;
+
+	height = 0;
+	line = get_next_line(fd);
+	while (line)
 	{
-		ft_printf("Error\n");
-		exit(1);
+		process_map_line(game, line);
+		height++;
+		line = get_next_line(fd);
 	}
-	game->heightmap = 0;
-	game->widthmap = 0;
-	while (1)
-	{
-		readmap = get_next_line(game->fd);
-		if (!readmap)
-			break ;
-		process_map_line(game, readmap);
-	}
-	close(game->fd);
-	check_map_dimensions(game);
-	return (1);
+	game->heightmap = height;
+}
+
+int	map_reading(t_complete *game, char *path)
+{
+	int		fd;
+
+	fd = open(path, O_RDONLY);
+	if (fd < 0)
+		handle_map_error(game, fd);
+	read_map_lines(game, fd);
+	close(fd);
+	return (0);
 }

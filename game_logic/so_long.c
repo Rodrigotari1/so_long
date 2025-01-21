@@ -6,7 +6,7 @@
 /*   By: rodrigo <rodrigo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/30 12:35:47 by rodrigo           #+#    #+#             */
-/*   Updated: 2025/01/20 20:09:32 by rodrigo          ###   ########.fr       */
+/*   Updated: 2025/01/21 00:56:14 by rodrigo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +51,13 @@ int	main(int argc, char **argv)
 	t_complete	game;
 
 	if (argc != 2)
-		return (0);
+	{
+		ft_printf("Error\nInvalid number of arguments\n");
+		return (1);
+	}
 	ft_memset(&game, 0, sizeof(t_complete));
-	map_reading(&game, argv);
+	check_file_validity(argv[1]);
+	map_reading(&game, argv[1]);
 	check_errors(&game);
 	game.mlxpointer = mlx_init();
 	game.winpointer = mlx_new_window(game.mlxpointer, game.widthmap * TILE_SIZE,

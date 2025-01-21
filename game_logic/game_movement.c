@@ -6,7 +6,7 @@
 /*   By: rodrigo <rodrigo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/30 12:35:30 by rodrigo           #+#    #+#             */
-/*   Updated: 2025/01/20 19:46:00 by rodrigo          ###   ########.fr       */
+/*   Updated: 2025/01/21 01:06:17 by rodrigo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int	handle_move_to_position(t_complete *game, t_pos new, t_pos old)
 	{
 		if (game->collectables == 0)
 		{
-			ft_printf("\nVictory! You've completed the level!\n");
+			ft_printf("Good stuff!\n");
 			exit_point(game);
 		}
 	}

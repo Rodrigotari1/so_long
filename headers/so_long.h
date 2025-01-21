@@ -6,7 +6,7 @@
 /*   By: rodrigo <rodrigo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 17:20:40 by rtari-ca          #+#    #+#             */
-/*   Updated: 2025/01/20 20:09:08 by rodrigo          ###   ########.fr       */
+/*   Updated: 2025/01/21 15:44:39 by rodrigo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ typedef struct s_pos
 }	t_pos;
 
 int		exit_point(t_complete *game);
-int		map_reading(t_complete *game, char **argv);
+int		map_reading(t_complete *game, char *path);
 int		controls_working(int command, t_complete *game);
 void	adding_in_graphics(t_complete *game);
 void	place_images_in_game(t_complete *game);
@@ -77,5 +77,6 @@ int		handle_player_movement(t_complete *game, int new_x, int new_y);
 void	validate_path(t_complete *game);
 void	free_visited_array(char **visited, int height);
 void	*ft_memset(void *b, int c, size_t length);
+void	check_empty_map(t_complete *game);
 
 #endif
