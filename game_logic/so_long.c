@@ -6,7 +6,7 @@
 /*   By: rodrigo <rodrigo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/30 12:35:47 by rodrigo           #+#    #+#             */
-/*   Updated: 2025/01/21 18:32:47 by rodrigo          ###   ########.fr       */
+/*   Updated: 2025/01/21 18:56:28 by rodrigo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,29 +26,20 @@ int	exit_point(t_complete *game)
 {
 	if (!game)
 		return (0);
-	
 	if (game->winpointer && game->mlxpointer)
 	{
 		free_textures(game);
-		#ifdef __linux__
-		mlx_destroy_window(game->mlxpointer, game->winpointer);
-		if (game->mlxpointer)
-		{
-			mlx_loop_end(game->mlxpointer);
-			mlx_destroy_display(game->mlxpointer);
-			free(game->mlxpointer);
-		}
-		#else
 		mlx_destroy_window(game->mlxpointer, game->winpointer);
 		if (game->mlxpointer)
 			free(game->mlxpointer);
-		#endif
 	}
 	
-	// Free map
-	for (int i = 0; game->map && i < game->heightmap; i++)
-		free(game->map[i]);
-	free(game->map);
+	if (game->map)
+	{
+		while (game->heightmap--)
+			free(game->map[game->heightmap]);
+		free(game->map);
+	}
 	
 	exit(0);
 	return (0);
