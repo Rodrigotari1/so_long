@@ -6,11 +6,11 @@
 /*   By: rodrigo <rodrigo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/14 23:00:00 by rtari-ca          #+#    #+#             */
-/*   Updated: 2025/01/21 16:03:46 by rodrigo          ###   ########.fr       */
+/*   Updated: 2025/01/21 18:32:15 by rodrigo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "../headers/so_long.h"
 
 static void	load_game_textures(t_complete *game)
 {

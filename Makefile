@@ -12,7 +12,7 @@
 
 NAME := so_long
 CC := gcc
-CFLAGS := -Wall -Wextra -Werror -Iheaders
+CFLAGS := -Wall -Wextra -Werror -Iheaders -g
 
 # Source directories and files
 SRC_DIR := game_logic
@@ -25,10 +25,12 @@ UNAME := $(shell uname)
 
 ifeq ($(UNAME), Linux)
 	MLX_DIR := minilibx-linux
-	MLX_FLAGS := -lmlx -lXext -lX11
+	MLX_FLAGS := -lmlx -lXext -lX11 -L$(MLX_DIR)
+	CFLAGS += -I$(MLX_DIR)
 else ifeq ($(UNAME), Darwin)
 	MLX_DIR := minilibx
-	MLX_FLAGS := -lmlx -framework OpenGL -framework AppKit
+	MLX_FLAGS := -lmlx -framework OpenGL -framework AppKit -L$(MLX_DIR)
+	CFLAGS += -I$(MLX_DIR)
 endif
 
 MLX := $(MLX_DIR)/libmlx.a
@@ -45,6 +47,13 @@ RESET := \033[0m
 # Add printf directory and library
 PRINTF_DIR = printf
 PRINTF = $(PRINTF_DIR)/libftprintf.a
+
+# Add dependency generation
+DEPS := $(SRCS:.c=.d)
+CFLAGS += -MMD -MP
+
+# Include generated dependencies
+-include $(DEPS)
 
 all: $(MLX) $(PRINTF) $(NAME)
 
