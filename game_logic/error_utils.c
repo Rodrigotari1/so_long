@@ -38,6 +38,6 @@ int	error_message(char *message)
 {
 	if (!message)
 		return (-1);
-	ft_printf("Error\n%s\n", message);
+	ft_printf("%s\n", message);
 	return (-1);
 }

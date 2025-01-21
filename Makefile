@@ -20,18 +20,10 @@ GNL_DIR := get_next_line
 SRCS := $(wildcard $(SRC_DIR)/*.c) $(wildcard $(GNL_DIR)/*.c)
 OBJS := $(SRCS:.c=.o)
 
-# OS specific configurations
-UNAME := $(shell uname)
-
-ifeq ($(UNAME), Linux)
-	MLX_DIR := minilibx-linux
-	MLX_FLAGS := -lmlx -lXext -lX11 -L$(MLX_DIR)
-	CFLAGS += -I$(MLX_DIR)
-else ifeq ($(UNAME), Darwin)
-	MLX_DIR := minilibx
-	MLX_FLAGS := -lmlx -framework OpenGL -framework AppKit -L$(MLX_DIR)
-	CFLAGS += -I$(MLX_DIR)
-endif
+# MLX configuration
+MLX_DIR := minilibx-linux
+MLX_FLAGS := -lmlx -lXext -lX11 -L$(MLX_DIR)
+CFLAGS += -I$(MLX_DIR)
 
 MLX := $(MLX_DIR)/libmlx.a
 LIBS := $(MLX_FLAGS) -lm -lz

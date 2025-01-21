@@ -21,10 +21,7 @@ int	check_horizontal_walls(t_complete *game)
 	{
 		if (!(game->map[0][j] == '1' && game->map[game->heightmap - 1][j]
 			== '1'))
-		{
-			ft_printf("Error\n");
 			return (0);
-		}
 		j++;
 	}
 	return (1);
@@ -39,10 +36,7 @@ int	check_vertical_walls(t_complete *game)
 	{
 		if (!(game->map[height][0] == '1'
 			&& game->map[height][game->widthmap - 1] == '1'))
-		{
-			ft_printf("Error\n");
 			return (0);
-		}
 		height++;
 	}
 	return (1);
@@ -52,7 +46,7 @@ void	validate_walls(t_complete *game)
 {
 	if (!check_vertical_walls(game) || !check_horizontal_walls(game))
 	{
-		ft_printf("Error\n");
+		ft_printf("Error\nMap must be surrounded by walls\n");
 		exit_point(game);
 	}
 }

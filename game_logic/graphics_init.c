@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   graphics_display.c                                 :+:      :+:    :+:   */
+/*   graphics_init.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rodrigo <rodrigo@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rtari-ca <rtari-ca@student.42lausanne.c    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/14 23:00:00 by rtari-ca          #+#    #+#             */
-/*   Updated: 2025/01/21 18:32:15 by rodrigo          ###   ########.fr       */
+/*   Updated: 2025/01/21 18:32:15 by rtari-ca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,35 +61,4 @@ static void	load_game_textures(t_complete *game)
 void	place_images_in_game(t_complete *game)
 {
 	load_game_textures(game);
-}
-
-static void	count_collectibles(t_complete *game)
-{
-	int	x;
-	int	y;
-
-	game->collectables = 0;
-	y = -1;
-	while (++y < game->heightmap)
-	{
-		x = -1;
-		while (++x < game->widthmap)
-			if (game->map[y][x] == 'C')
-				game->collectables++;
-	}
-}
-
-void	adding_in_graphics(t_complete *game)
-{
-	int	x;
-	int	y;
-
-	count_collectibles(game);
-	y = -1;
-	while (++y < game->heightmap)
-	{
-		x = -1;
-		while (++x < game->widthmap)
-			render_tile(game, game->map[y][x], x, y);
-	}
-}
+} 

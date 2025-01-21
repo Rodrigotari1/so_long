@@ -81,7 +81,7 @@ int	handle_player_movement(t_complete *game, int new_x, int new_y)
 	{
 		if (game->collectables != 0)
 			return (0);
-		printf("\nVictory! You've completed the level!\n");
+		ft_printf("\nVictory! You've completed the level!\n");
 		exit_point(game);
 	}
 	return (handle_move_to_position(game, new, old));
@@ -92,22 +92,22 @@ int	controls_working(int command, t_complete *game)
 	int	success;
 
 	success = 0;
-	printf("Key pressed: %d\n", command);
-	if (command == 53)
+	ft_printf("Key pressed: %d\n", command);
+	if (command == 65307)
 		exit_point(game);
-	if (command == 13)
+	if (command == 119)
 		success = handle_movement(game, 0, -1);
-	if (command == 1)
+	if (command == 115)
 		success = handle_movement(game, 0, 1);
-	if (command == 0)
+	if (command == 97)
 		success = handle_movement(game, -1, 0);
-	if (command == 2)
+	if (command == 100)
 		success = handle_movement(game, 1, 0);
 	if (success)
 	{
-		printf("Steps: %i | Collectables: %i\n",
+		ft_printf("Steps: %i | Collectables: %i\n",
 			game->counter, game->collectables);
-		printf("Position: x=%d, y=%d\n", game->x_axis, game->y_axis);
+		ft_printf("Position: x=%d, y=%d\n", game->x_axis, game->y_axis);
 		adding_in_graphics(game);
 	}
 	return (1);

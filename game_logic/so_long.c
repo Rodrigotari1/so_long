@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "so_long.h"
+#include "mlx.h"
 
 void	*ft_memset(void *b, int c, size_t length)
 {
@@ -33,14 +34,12 @@ int	exit_point(t_complete *game)
 		if (game->mlxpointer)
 			free(game->mlxpointer);
 	}
-	
 	if (game->map)
 	{
 		while (game->heightmap--)
 			free(game->map[game->heightmap]);
 		free(game->map);
 	}
-	
 	exit(0);
 	return (0);
 }
@@ -63,7 +62,7 @@ int	main(int argc, char **argv)
 			game.heightmap * TILE_SIZE, "solong");
 	place_images_in_game(&game);
 	adding_in_graphics(&game);
-	mlx_key_hook(game.winpointer, controls_working, &game);
+	mlx_hook(game.winpointer, 2, 1L << 0, controls_working, &game);
 	mlx_hook(game.winpointer, 33, 1L << 17, exit_point, &game);
 	mlx_loop(game.mlxpointer);
 }

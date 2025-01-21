@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "../headers/so_long.h"
+#include "mlx.h"
 
 static void	handle_exit(t_complete *game, int x, int y)
 {
@@ -56,6 +57,8 @@ void	render_tile(t_complete *game, char tile_type, int x, int y)
 
 void	free_textures(t_complete *game)
 {
+	if (!game || !game->mlxpointer)
+		return ;
 	if (game->floor)
 		mlx_destroy_image(game->mlxpointer, game->floor);
 	if (game->barrier)
@@ -68,21 +71,23 @@ void	free_textures(t_complete *game)
 		mlx_destroy_image(game->mlxpointer, game->collectable);
 }
 
-void cleanup_game(t_complete *game)
+void	cleanup_game(t_complete *game)
 {
+	int	i;
+
 	if (!game)
-		return;
+		return ;
 	free_textures(game);
 	if (game->winpointer && game->mlxpointer)
 	{
 		mlx_destroy_window(game->mlxpointer, game->winpointer);
-		if (game->mlxpointer)
-			free(game->mlxpointer);
+		free(game->mlxpointer);
 	}
 	if (game->map)
 	{
-		while (game->heightmap--)
-			free(game->map[game->heightmap]);
+		i = game->heightmap;
+		while (i--)
+			free(game->map[i]);
 		free(game->map);
 	}
 }
